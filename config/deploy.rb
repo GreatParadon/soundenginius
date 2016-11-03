@@ -1,8 +1,8 @@
 # config valid only for current version of Capistrano
 # lock '3.5.0'
 
-set :application, 'lannaliving'
-set :repo_url, 'git@gitlab.com:wisdomlanna/lannaliving_backend.git'
+set :application, 'soundenginius'
+set :repo_url, 'git@github.com:GreatParadon/soundenginius.git'
 set :linked_files, fetch(:linked_files, []).push('.env', 'public/.htaccess')
 set :linked_dirs, fetch(:linked_dirs, []).push('public/content')
 

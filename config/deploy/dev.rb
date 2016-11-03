@@ -1,8 +1,8 @@
 set :branch, 'dev'
-set :deploy_to, '/var/www/dev.wisdomlanna.com/lannaliving_backend'
+set :deploy_to, '/var/www/html'
 #set :tmp_dir, '/root/deploy_tmp'
 
-server  'dev.wisdomlanna.com',roles: %w{web}, user:'root', password:'fvpl6gmr'
+server  '128.199.231.168',roles: %w{web}, user:'root', password:'paradon@1'
 
 # server-based syntax
 # ======================
