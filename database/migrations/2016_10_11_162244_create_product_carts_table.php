@@ -16,7 +16,7 @@ class CreateProductCartsTable extends Migration
             $table->increments('id');
             $table->integer('user_id');
             $table->integer('sub_category_id');
-            $table->integer('checkout_id');
+            $table->integer('checkout_id')->nullable();
             $table->integer('pieces');
             $table->tinyInteger('status')->comment('0: wait, 1: checked out');
             $table->timestamps();
