@@ -3,26 +3,10 @@
     <h2>{{ $product->title }}</h2>
 
     <div class="row" style="margin-bottom: 20px">
-        <div class="col-sm-1">
-            <ul class="list-group">
-                <li class="list-group-item"
-                    style="padding: 0; margin-bottom: 10px; border-radius: 0px; cursor: pointer"
-                    onclick="changeImage('{{ $product->image }}')">
-                    <img src="{{ url('content/subcategory').'/'.$product->image }}" height="50%">
-                </li>
-                @foreach($gallery as $r)
-                    <li class="list-group-item"
-                        style="padding: 0; margin-bottom: 10px; border-radius: 0px; cursor: pointer"
-                        onclick="changeImage('{{ $r->image }}')">
-                        <img src="{{ url('content/subcategory').'/'.$r->image }}" height="50%">
-                    </li>
-                @endforeach
-            </ul>
-        </div>
-        <div class="col-sm-5">
+        <div class="col-md-6">
             <img id="main_image" src="{{ url('content/subcategory').'/'.$product->image }}" height="50%">
         </div>
-        <div class="col-sm-6">
+        <div class="col-md-6">
             <p>รายละเอียด</p>
             <table class="table">
                 <tr>
@@ -42,6 +26,20 @@
                 </tr>
             </table>
         </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            style="padding: 0; margin-bottom: 10px; border-radius: 0px; cursor: pointer"
+            onclick="changeImage('{{ $product->image }}')">
+            <img src="{{ url('content/subcategory').'/'.$product->image }}" width="100%">
+        </div>
+        @foreach($gallery as $r)
+            <div class="col-md-2"
+                 style="padding: 0; margin-bottom: 10px; border-radius: 0px; cursor: pointer"
+                 onclick="changeImage('{{ $r->image }}')">
+                <img src="{{ url('content/subcategory').'/'.$r->image }}" width="100%">
+            </div>
+        @endforeach
     </div>
     <div class="row">
         <div class="col-sm-12">
