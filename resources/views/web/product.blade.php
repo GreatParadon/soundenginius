@@ -2,7 +2,6 @@
 @section('content')
     <style>
         #product_img .item img {
-            display: block;
             width: auto;
             height: 250px;
         }
@@ -10,7 +9,7 @@
     <h2>{{ $product->title }}</h2>
 
     <div class="row" style="margin-bottom: 20px">
-        <div class="col-md-5">
+        <div class="col-md-4">
             <div id="product_img" class="owl-carousel owl-theme">
                 <div class="item">
                     <a href="{{ url('content/subcategory').'/'.$product->image }}" data-lightbox="product_img"><img
@@ -24,7 +23,7 @@
                 @endforeach
             </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-8">
             <p>รายละเอียด</p>
             <table class="table">
                 <tr>
@@ -80,13 +79,6 @@
                 slideSpeed: 300,
                 paginationSpeed: 400,
                 singleItem: true,
-
-                // "singleItem:true" is a shortcut for:
-                 items : 2,
-                 itemsDesktop : false,
-                 itemsDesktopSmall : false,
-                 itemsTablet: false,
-                 itemsMobile : false
 
             });
 
