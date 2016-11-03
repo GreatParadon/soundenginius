@@ -8,19 +8,19 @@
                 <li class="list-group-item"
                     style="padding: 0; margin-bottom: 10px; border-radius: 0px; cursor: pointer"
                     onclick="changeImage('{{ $product->image }}')">
-                    <img src="{{ url('content/subcategory').'/'.$product->image }}" width="100%">
+                    <img src="{{ url('content/subcategory').'/'.$product->image }}" height="50%">
                 </li>
                 @foreach($gallery as $r)
                     <li class="list-group-item"
                         style="padding: 0; margin-bottom: 10px; border-radius: 0px; cursor: pointer"
                         onclick="changeImage('{{ $r->image }}')">
-                        <img src="{{ url('content/subcategory').'/'.$r->image }}" width="100%">
+                        <img src="{{ url('content/subcategory').'/'.$r->image }}" height="50%">
                     </li>
                 @endforeach
             </ul>
         </div>
         <div class="col-sm-5">
-            <img id="main_image" src="{{ url('content/subcategory').'/'.$product->image }}" width="100%" height="250">
+            <img id="main_image" src="{{ url('content/subcategory').'/'.$product->image }}" height="50%">
         </div>
         <div class="col-sm-6">
             <p>รายละเอียด</p>

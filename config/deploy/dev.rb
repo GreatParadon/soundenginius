@@ -1,5 +1,5 @@
-set :branch, 'dev'
-set :deploy_to, '/var/www/html'
+set :branch, 'master'
+set :deploy_to, '/var/www/html/soundenginius'
 #set :tmp_dir, '/root/deploy_tmp'
 
 server  '128.199.231.168',roles: %w{web}, user:'root', password:'paradon@1'
@@ -55,13 +55,4 @@ server  '128.199.231.168',roles: %w{web}, user:'root', password:'paradon@1'
 #
 # The server-based syntax can be used to override options:
 # ------------------------------------
-# server 'example.com',
-#   user: 'user_name',
-#   roles: %w{web app},
-#   ssh_options: {
-#     user: 'user_name', # overrides user setting above
-#     keys: %w(/home/user_name/.ssh/id_rsa),
-#     forward_agent: false,
-#     auth_methods: %w(publickey password)
-#     # password: 'please use keys'
-#   }
+
