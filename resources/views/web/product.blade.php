@@ -1,12 +1,30 @@
 @extends('web_component.main')
 @section('content')
+    <style>
+        #product_img .item img {
+            display: block;
+            width: auto;
+            height: 250px;
+        }
+    </style>
     <h2>{{ $product->title }}</h2>
 
     <div class="row" style="margin-bottom: 20px">
-        <div class="col-md-6">
-            <img id="main_image" src="{{ url('content/subcategory').'/'.$product->image }}" height="50%">
+        <div class="col-md-5">
+            <div id="product_img" class="owl-carousel owl-theme">
+                <div class="item">
+                    <a href="{{ url('content/subcategory').'/'.$product->image }}" data-lightbox="product_img"><img
+                                src="{{ url('content/subcategory').'/'.$product->image }}"></a>
+                </div>
+                @foreach($gallery as $r)
+                    <div class="item">
+                        <a href="{{ url('content/subcategory').'/'.$r->image }}" data-lightbox="product_img"><img
+                                    src="{{ url('content/subcategory').'/'.$r->image }}"></a>
+                    </div>
+                @endforeach
+            </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-7">
             <p>รายละเอียด</p>
             <table class="table">
                 <tr>
@@ -28,28 +46,14 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-2">
-            style="padding: 0; margin-bottom: 10px; border-radius: 0px; cursor: pointer"
-            onclick="changeImage('{{ $product->image }}')">
-            <img src="{{ url('content/subcategory').'/'.$product->image }}" width="100%">
-        </div>
-        @foreach($gallery as $r)
-            <div class="col-md-2"
-                 style="padding: 0; margin-bottom: 10px; border-radius: 0px; cursor: pointer"
-                 onclick="changeImage('{{ $r->image }}')">
-                <img src="{{ url('content/subcategory').'/'.$r->image }}" width="100%">
-            </div>
-        @endforeach
-    </div>
-    <div class="row">
         <div class="col-sm-12">
             {!! $product->content !!}
         </div>
     </div>
     <script type="application/javascript">
-        function changeImage(image_name) {
-            $("#main_image").prop('src', '{{ url('content/subcategory') }}/' + image_name);
-        }
+        {{--function changeImage(image_name) {--}}
+        {{--$("#main_image").prop('src', '{{ url('content/subcategory') }}/' + image_name);--}}
+        {{--}--}}
 
         function storeProductToCart(id) {
             $.ajax({
@@ -67,5 +71,25 @@
                 }
             })
         }
+
+        $(document).ready(function () {
+
+            $("#product_img").owlCarousel({
+
+                navigation: true, // Show next and prev buttons
+                slideSpeed: 300,
+                paginationSpeed: 400,
+                singleItem: true,
+
+                // "singleItem:true" is a shortcut for:
+                 items : 2,
+                 itemsDesktop : false,
+                 itemsDesktopSmall : false,
+                 itemsTablet: false,
+                 itemsMobile : false
+
+            });
+
+        });
     </script>
 @stop
