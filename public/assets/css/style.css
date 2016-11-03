@@ -238,8 +238,13 @@ footer .glyphicon {
     background-color: #fd7424;
 }
 
- .message-alert {
-     position: absolute;
-     top: 210px;
-     right: 30px;
- }
+.message-alert {
+    position: absolute;
+    top: 210px;
+    right: 30px;
+}
+
+a, a :active, a :visited, a:focus, a:hover {
+    color: #fd7424;
+    text-decoration: none;
+}

@@ -9,18 +9,18 @@
                     <th>
                         ที่อยู่ :
                     </th>
-                    <td>Apartment K ซอย 1 ถนน นิมมานเหมินทร์ <br>
-                        ตำบลสุเทพ อำเภอ เมืองเชียงใหม่<br>
-                        จังหวัด เชียงใหม่ รหัสไปรษณีย์ 50200
+                    <td>188/1 หมู่ 10 ตำบล สารภี อำเภอ สารภี จังหวัด เชียงใหม่ 50140
                     </td>
                 </tr>
                 <tr>
                     <th>โทร :</th>
-                    <td>083-5726268</td>
+                    <td>081-8842022, 082-3820505</td>
                 </tr>
                 <tr>
                     <th>Facebook :</th>
-                    <td>ตะติระ</td>
+                    <td>
+                        <a href="https://www.facebook.com/soundenginius">SOUNDENGINIUS</a>
+                    </td>
                 </tr>
             </table>
         </div>
