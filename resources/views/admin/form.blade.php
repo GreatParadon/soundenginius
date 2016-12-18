@@ -229,7 +229,7 @@
             $.ajax({
                 data: data,
                 type: "POST",
-                url: "{{url('admin/wysiwyg_upload')}}",
+                url: "{{url('wysiwyg_upload')}}",
                 cache: false,
                 contentType: false,
                 processData: false,
