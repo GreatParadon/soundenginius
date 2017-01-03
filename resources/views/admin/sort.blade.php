@@ -4,6 +4,8 @@
     <style>
         #sortsort {
             height: 40px;
+            background-color: #f2f2f2;
+            color: #333;
         }
     </style>
 
@@ -17,9 +19,9 @@
         @foreach ($select as $r)
             <li data-id="{{ $r->id }}" id="sortsort">
                 <div class="row">
-                @foreach ($r['attributes'] as $key => $value)
-                    <div class="col-md-2"><b>{!! $value !!}</b></div>
-                @endforeach
+                    @foreach ($r['attributes'] as $key => $value)
+                        <div class="col-md-3"><b>{!! $value !!}</b></div>
+                    @endforeach
                 </div>
             </li>
         @endforeach

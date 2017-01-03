@@ -14,10 +14,16 @@ class CategoryController extends BaseController
         ['field' => 'title', 'type' => 'text', 'label' => 'Title'],
         ['field' => 'image', 'type' => 'image', 'label' => 'Image'],
         ['field' => 'active', 'type' => 'checkbox', 'label' => 'Active']];
-    protected $create = true;
-    protected $edit = true;
-    protected $delete = true;
-    protected $sort = true;
+
+    protected function feature()
+    {
+        return [
+            'create' => true,
+            'edit' => true,
+            'delete' => true,
+            'sort' => true
+        ];
+    }
 
     protected function model()
     {
@@ -58,7 +64,7 @@ class CategoryController extends BaseController
                 $image = fileUpload($file, $this->page['content']);
                 if ($image['success'] == true) {
                     $data[$r] = $image['filename'];
-                    Image::make($file)->limitColors(255, '#ffffff')->colorize(100, 100, 100)->save(public_path('content/'.$this->page['content'].'/white_' . $data[$r]));
+                    Image::make($file)->limitColors(255, '#ffffff')->colorize(100, 100, 100)->save(public_path('content/' . $this->page['content'] . '/white_' . $data[$r]));
                 } else {
                     return back()->with('failed', 'Failed to Store');
                 }
@@ -92,7 +98,7 @@ class CategoryController extends BaseController
                 $image = fileUpload($file, $this->page['content']);
                 if ($image['success'] == true) {
                     $data[$r] = $image['filename'];
-                    Image::make($file)->limitColors(255, '#ffffff')->colorize(100, 100, 100)->save(public_path('content/'.$this->page['content'].'/white_' . $data[$r]));
+                    Image::make($file)->limitColors(255, '#ffffff')->colorize(100, 100, 100)->save(public_path('content/' . $this->page['content'] . '/white_' . $data[$r]));
                 } else {
                     return back()->with('failed', 'Failed to Store');
                 }

@@ -14,15 +14,26 @@ class BaseController extends Controller
 
     protected $page = [];
     protected $list_data = [];
-    protected $create = false;
-    protected $edit = false;
-    protected $delete = false;
-    protected $sort = false;
-    protected $gallery = false;
     protected $list_view = 'list';
     protected $form_view = 'form';
+    protected $gallery_id_name = 'test_id';
+
+    protected function feature()
+    {
+        return [
+            'create' => false,
+            'edit' => false,
+            'delete' => false,
+            'sort' => false
+        ];
+    }
 
     protected function model()
+    {
+        return new Test();
+    }
+
+    protected function model_gallery()
     {
         return new Test();
     }
@@ -31,11 +42,6 @@ class BaseController extends Controller
     {
         $form_data = collect([]);
         return new $form_data;
-    }
-
-    protected function galleryQuery($id)
-    {
-        return new Test();
     }
 
     protected function listQuery($list_data)
@@ -63,16 +69,23 @@ class BaseController extends Controller
         return view('layouts.app', ['page' => ['title' => 'Dashboard']]);
     }
 
+    protected function tab()
+    {
+        return [];
+    }
+
     protected function index()
     {
         $page = $this->page;
         $page['type'] = 'List';
 
         $list_data = collect($this->list_data);
-        $create = $this->create;
-        $sort = $this->sort;
-        $edit = $this->edit;
-        $delete = $this->delete;
+
+        $feature = $this->feature();
+        $create = $feature['create'];
+        $sort = $feature['sort'];
+        $edit = $feature['edit'];
+        $delete = $feature['delete'];
         $list_view = $this->list_view;
 
         $select = $this->listQuery($list_data);
@@ -162,17 +175,17 @@ class BaseController extends Controller
         $page = $this->page;
         $page['type'] = 'Description';
         $page['subtitle'] = 'Edit ' . $this->page['content'];
+        $gallery_id_name = $this->gallery_id_name;
 
-        $gallery = $this->gallery;
-        if ($gallery == true) {
-            $galleries = $this->galleryQuery($id);
-        }
+        $tab = $this->tab();
+
+        $galleries = (in_array('gallery', $tab) == true) ? $this->galleryQuery($gallery_id_name, $id) : ['gallery' => [], 'count' => 0];
         $form_data = $this->formData()->values()->all();
         $form_view = $this->form_view;
 
         $select = $this->model()->find($id);
 
-        return view('admin.' . $form_view, compact('page', 'select', 'form_data', 'gallery', 'galleries'));
+        return view('admin.' . $form_view, compact('page', 'select', 'form_data', 'tab', 'galleries'));
     }
 
     protected function update(Request $request)
@@ -261,7 +274,6 @@ class BaseController extends Controller
     protected function sort(Request $request)
     {
         $data = $request->input('data');
-//        dd($data);
         $seq = 0;
 
         foreach ($data as $r) {
@@ -270,6 +282,48 @@ class BaseController extends Controller
         }
 
         return success(['message' => 'Succeed']);
+    }
+
+    protected function galleryQuery($gallery_id_name, $id)
+    {
+        $gallery = $this->model_gallery()->where($gallery_id_name, $id)->get();
+        foreach ($gallery as $g) {
+            $g->image = filePath($this->page['content'], $g->image);
+        }
+
+        $count = $gallery->count();
+        return compact('gallery', 'count');
+    }
+
+    protected function galleryUpload(Request $request)
+    {
+        $files = $request->file('gallery');
+        $file_count = count($files);
+        $count = 0;
+        foreach ($files as $file) {
+            $image = fileUpload($file, $this->page['content']);
+            if ($image['success'] == true) {
+                $data['image'] = $image['filename'];
+                $data['room_id'] = $request->input('id');
+                $this->model_gallery()->create($data);
+            } else {
+                return error('Upload Failed');
+            }
+            $count++;
+        }
+        if ($count == $file_count) {
+            return success('Uploaded');
+        }
+    }
+
+    protected function galleryDestroy($id)
+    {
+        $RoomImage = $this->model_gallery()->where('id', $id)->delete();
+        if ($RoomImage) {
+            return success('Deleted');
+        } else {
+            return error('Delete Failed');
+        }
     }
 
 }

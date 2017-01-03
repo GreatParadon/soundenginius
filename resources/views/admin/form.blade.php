@@ -3,9 +3,9 @@
     {{ $page['title'] or '' }}
 @stop
 @section('content')
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.1/summernote.css"
-          rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.1/summernote.js"></script>
+    <!-- include summernote css/js-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.js"></script>
     <form class="form-horizontal" role="form"
           action="@if(isset($select)){{ url('admin/'.$page['content'].'/'.$select->id) }}@else{{ url('admin/'.$page['content']) }}@endif"
           method="POST" enctype="multipart/form-data">
@@ -13,7 +13,7 @@
             {!! method_field('PUT') !!}
         @endif
         {{ csrf_field() }}
-        <table class="table table-responsive table-hover no-border">
+        <table class="table table-hover no-border">
             @foreach($form_data as $form)
                 <tr>
                     @if($form['type'] == 'image')
@@ -116,7 +116,21 @@
                                                 console.log(url);
                                                 sendFile(files[0], url, $(this));
                                             }
-                                        }
+                                        },
+                                        fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New'],
+                                        toolbar: [
+                                            // [groupName, [list of button]]
+                                            ['style', ['style']],
+                                            ['font', ['bold', 'italic', 'underline', 'clear', 'strikethrough', 'superscript', 'subscript']],
+                                            ['fontsize', ['fontsize']],
+                                            ['color', ['color']],
+                                            ['para', ['ul', 'ol', 'paragraph']],
+                                            ['height', ['height']],
+                                            ['table', ['table']],
+                                            ['insert', ['link', 'picture', 'hr']],
+                                            ['view', ['fullscreen', 'codeview']],
+                                            ['help', ['help']]
+                                        ]
 
                                     });
                                 </script>
@@ -173,7 +187,7 @@
                                                 position: location,
                                                 map: map
                                             });
-                                            document.getElementById("lat").value = location.lat();
+                                            document.getElementById("lat").value = ocation.lat();
                                             document.getElementById("lon").value = location.lng();
                                         } else {
                                             marker.setMap(null);

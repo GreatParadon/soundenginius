@@ -15,10 +15,16 @@ class WebUserController extends BaseController
     protected $list_data = [['field' => 'id', 'type' => 'number', 'label' => 'ID'],
         ['field' => 'name', 'type' => 'text', 'label' => 'Name'],
         ['field' => 'tel', 'type' => 'text', 'label' => 'Tel']];
-    protected $create = false;
-    protected $edit = true;
-    protected $delete = true;
-    protected $sort = false;
+
+    protected function feature()
+    {
+        return [
+            'create' => false,
+            'edit' => true,
+            'delete' => true,
+            'sort' => false
+        ];
+    }
 
     protected function model()
     {
@@ -53,7 +59,7 @@ class WebUserController extends BaseController
 
         $select = $this->model()->find($id);
 
-        return view('admin.' . $form_view, compact('page', 'select', 'form_data', 'gallery', 'galleries'));
+        return view('admin.' . $form_view, compact('page', 'select', 'form_data', 'tab', 'galleries'));
     }
 
 }

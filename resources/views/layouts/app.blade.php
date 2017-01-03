@@ -18,7 +18,7 @@
     <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
 
-        @include('layouts.partials.contentheader')
+        {{--@include('layouts.partials.contentheader')--}}
 
         <!-- Main content -->
             <section class="content">
@@ -30,9 +30,15 @@
                     <ul class="nav nav-tabs">
                         <li class="active"><a href="#tab_1" data-toggle="tab"
                                               aria-expanded="true">{{ $page['title'] or '' }}</a></li>
-                        @if(isset($gallery) and $gallery == true and isset($form_data))
-                            <li class=""><a href="#tab_2" data-toggle="tab" aria-expanded="false">Gallery</a></li>
+                        @if(isset($tab))
+                            @foreach($tab as $key => $value)
+                                <li class=""><a href="#tab_{{ $key + 2 }}" data-toggle="tab"
+                                                aria-expanded="false">{{ ucfirst($value) }}</a></li>
+                            @endforeach
                         @endif
+                        {{--@if(isset($gallery) and $gallery == true and isset($form_data))--}}
+                        {{--<li class=""><a href="#tab_2" data-toggle="tab" aria-expanded="false">Gallery</a></li>--}}
+                        {{--@endif--}}
                         <li class="pull-right">
                             @if(isset($sort) and $sort == true)
                                 <a href="{{ $page['content'].'/sort' }}"
@@ -50,11 +56,19 @@
                         <div class="tab-pane active table-responsive" id="tab_1">
                             @yield('content')
                         </div>
-                        @if(isset($gallery) and $gallery == true and isset($form_data))
-                            <div class="tab-pane" id="tab_2">
-                                @include('admin.gallery')
-                            </div>
+                        @if(isset($tab))
+                            @foreach($tab as $key => $value)
+                                <div class="tab-pane" id="tab_{{ $key +2 }}">
+                                    @include('admin.tab.'.$value)
+                                </div>
+                                {{--@if(isset($gallery) and $gallery == true and isset($form_data))
+                                    <div class="tab-pane" id="tab_2">
+                                        @include('admin.gallery')
+                                    </div>
+                                @endif--}}
+                            @endforeach
                         @endif
+
                     </div>
                     <!-- /.tab-content -->
                 </div>

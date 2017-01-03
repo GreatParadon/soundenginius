@@ -16,11 +16,18 @@ class CheckoutController extends BaseController
         ['field' => 'name', 'type' => 'text', 'label' => 'Name'],
         ['field' => 'total_cost', 'type' => 'text', 'label' => 'Total Cost'],
         ['field' => 'status', 'type' => 'checkbox', 'label' => 'Status']];
-    protected $create = false;
-    protected $edit = true;
-    protected $delete = true;
-    protected $sort = false;
+
     protected $form_view = 'checkout_form';
+
+    protected function feature()
+    {
+        return [
+            'create' => false,
+            'edit' => true,
+            'delete' => true,
+            'sort' => false
+        ];
+    }
 
     protected function model()
     {
@@ -34,10 +41,11 @@ class CheckoutController extends BaseController
         $page['type'] = 'List';
 
         $list_data = collect($this->list_data);
-        $create = $this->create;
-        $sort = $this->sort;
-        $edit = $this->edit;
-        $delete = $this->delete;
+        $feature = $this->feature();
+        $create = $feature['create'];
+        $sort = $feature['sort'];
+        $edit = $feature['edit'];
+        $delete = $feature['delete'];
         $list_view = $this->list_view;
 
         $select = $this->listQuery($list_data);
@@ -88,7 +96,7 @@ class CheckoutController extends BaseController
             ->where('checkout_id', $id)
             ->get();
 
-        return view('admin.' . $form_view, compact('page', 'select', 'form_data', 'gallery', 'galleries', 'product_cart'));
+        return view('admin.' . $form_view, compact('page', 'select', 'form_data', 'tab', 'galleries', 'product_cart'));
     }
 
     protected function update(Request $request)

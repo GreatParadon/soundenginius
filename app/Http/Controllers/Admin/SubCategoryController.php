@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\BaseController;
+use App\Models\ProductImage;
 use Illuminate\Http\Request;
 use App\Models\Banner;
 use App\Models\Category;
@@ -16,15 +17,32 @@ class SubCategoryController extends BaseController
         ['field' => 'category_name', 'type' => 'text', 'label' => 'Category'],
         ['field' => 'image', 'type' => 'image', 'label' => 'Logo'],
         ['field' => 'active', 'type' => 'checkbox', 'label' => 'Active']];
-    protected $create = true;
-    protected $edit = true;
-    protected $delete = true;
-    protected $gallery = true;
-    protected $sort = false;
+
+    protected function feature()
+    {
+        return [
+            'create' => true,
+            'edit' => true,
+            'delete' => true,
+            'sort' => true
+        ];
+    }
+
+    protected function tab()
+    {
+        return [
+            'gallery',
+        ];
+    }
 
     protected function model()
     {
         return new SubCategory();
+    }
+
+    protected function model_gallery()
+    {
+        return new ProductImage();
     }
 
     protected function listQuery($list_data)
@@ -50,48 +68,6 @@ class SubCategoryController extends BaseController
         return $form_data;
     }
 
-    protected function galleryQuery($id)
-    {
-        $gallery = Banner::where('sub_category_id', $id)->get();
-        foreach ($gallery as $g) {
-            $g->image = filePath($this->page['content'], $g->image);
-        }
 
-        $count = $gallery->count();
-        return compact('gallery', 'count');
-    }
-
-    protected function galleryUpload(Request $request)
-    {
-//        Banner::where('sub_category_id', $request->input('id'))->delete();
-        $files = $request->file('gallery');
-//        dd($files);
-        $file_count = count($files);
-        $count = 0;
-        foreach ($files as $file) {
-            $image = fileUpload($file, $this->page['content']);
-            if ($image['success'] == true) {
-                $data['image'] = $image['filename'];
-                $data['sub_category_id'] = $request->input('id');
-                Banner::create($data);
-            } else {
-                return error('Upload Failed');
-            }
-            $count++;
-        }
-        if ($count == $file_count) {
-            return success('Uploaded');
-        }
-    }
-
-    protected function galleryDestroy($id)
-    {
-        $banner = Banner::where('id', $id)->delete();
-        if ($banner) {
-            return success('Deleted');
-        } else {
-            return error('Delete Failed');
-        }
-    }
 
 }

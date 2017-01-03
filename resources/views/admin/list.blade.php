@@ -31,13 +31,13 @@
                     @if($edit == true or $delete == true)
                         <td>
                             @if($edit == true)
-                                <a href="{{ $page['content'].'/'.$r->id .'/edit'}}">Edit</a>
+                                <a href="{{ $page['content'].'/'.$r->id .'/edit'}}"><span class="glyphicon glyphicon-edit"></span></a>
                             @endif
                             @if($edit == true and $delete == true)
                                 |
                             @endif
                             @if($delete == true)
-                                <a onclick="deleteData({{ $r->id }})" style="cursor: pointer">Delete</a>
+                                    <a onclick="deleteData({{ $r->id }})" style="cursor: pointer"><span class="glyphicon glyphicon-trash"></span></a>
                             @endif
                         </td>
                     @endif

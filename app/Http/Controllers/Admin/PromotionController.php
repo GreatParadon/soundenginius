@@ -12,27 +12,21 @@ class PromotionController extends BaseController
         ['field' => 'title', 'type' => 'text', 'label' => 'Title'],
         ['field' => 'image', 'type' => 'image', 'label' => 'Logo'],
         ['field' => 'active', 'type' => 'checkbox', 'label' => 'Active']];
-    protected $create = true;
-    protected $edit = true;
-    protected $delete = true;
-    protected $sort = false;
+
+    protected function feature()
+    {
+        return [
+            'create' => true,
+            'edit' => true,
+            'delete' => true,
+            'sort' => false
+        ];
+    }
 
     protected function model()
     {
         return new Promotion();
     }
-
-//    protected function listQuery($list_data)
-//    {
-//        return $this->model()->select(
-//            'id',
-//            'title as title',
-//            'title as category_name',
-//            'image as image',
-//            'active as active')
-//            ->orderBy('sub_categories.title', 'ASC')
-//            ->paginate(30);
-//    }
 
     protected function formData()
     {
