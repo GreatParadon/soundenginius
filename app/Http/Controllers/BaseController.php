@@ -175,6 +175,7 @@ class BaseController extends Controller
         $page = $this->page;
         $page['type'] = 'Description';
         $page['subtitle'] = 'Edit ' . $this->page['content'];
+
         $gallery_id_name = $this->gallery_id_name;
 
         $tab = $this->tab();

@@ -2,7 +2,7 @@ set :branch, 'master'
 set :deploy_to, '/var/www/html/soundenginius'
 #set :tmp_dir, '/root/deploy_tmp'
 
-server  '128.199.231.168',roles: %w{web}, user:'root', password:'paradon@1'
+server  '128.199.231.168',roles: %w{web}, user:'root', password:'Paradon@1'
 
 # server-based syntax
 # ======================

@@ -18,6 +18,8 @@ class SubCategoryController extends BaseController
         ['field' => 'image', 'type' => 'image', 'label' => 'Logo'],
         ['field' => 'active', 'type' => 'checkbox', 'label' => 'Active']];
 
+    protected $gallery_id_name = 'sub_category_id';
+
     protected function feature()
     {
         return [
