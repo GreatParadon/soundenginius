@@ -21,20 +21,37 @@
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
     <script src="{{ asset('plugins/owl-carousel/owl.carousel.js') }}"></script>
+    <style>
+
+        #owl-index .item img {
+            margin-top: 50px;
+            display: block;
+            width: 100%;
+        }
+
+    </style>
 </head>
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
 
 @include('web_component.header')
 {{--<div class="text-center" style="height: 200px; background-color:#fd7424; color: #ffffff;" id="index_header">--}}
-    {{----}}
-    {{--<h1 style="padding-top: 70px; color: #ffffff">SOUNDENGINIUS</h1>--}}
+{{----}}
+{{--<h1 style="padding-top: 70px; color: #ffffff">SOUNDENGINIUS</h1>--}}
 {{--</div>--}}
 
-<div class="container container-seq text-center">
+<div class="container text-center">
+    <div id="owl-index" class="owl-carousel owl-theme">
+        <?php
+        $banner = \App\Models\Banner::where('active', 1)->orderBy('seq', 'ASC')->get();
+        ?>
+        @foreach($banner as $r)
+            <div class="item"><img src="{{ filePath('banner',$r->image) }}"></div>
+        @endforeach
+    </div>
     <div class="pull-right message-alert">
         @include('web.message')
     </div>
-    <div class="row">
+    <div class="row container-seq">
         <div class="col-sm-2 text-left">
             @include('web_component.sidebar')
         </div>
@@ -53,6 +70,19 @@
                 $(this).addClass("slide");
             });
         });
+    });
+
+    $(document).ready(function () {
+
+        $("#owl-index").owlCarousel({
+            slideSpeed: 200,
+            paginationSpeed: 800,
+            singleItem: true,
+            pagination: false,
+            autoPlay: true
+
+        });
+
     });
 </script>
 
