@@ -56,6 +56,10 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
     Route::post('promotion/sort', 'PromotionController@sort');
     Route::resource('promotion', 'PromotionController');
 
+    Route::get('banner/sort', 'BannerController@sortPage');
+    Route::post('banner/sort', 'BannerController@sort');
+    Route::resource('banner', 'BannerController');
+
     Route::delete('gallery/{id}', 'SubCategoryController@galleryDestroy');
     Route::post('gallery', 'SubCategoryController@galleryUpload');
 

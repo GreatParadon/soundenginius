@@ -25,9 +25,10 @@
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
 
 @include('web_component.header')
-<div class="text-center" style="height: 200px; background-color:#fd7424; color: #ffffff;" id="index_header">
-    <h1 style="padding-top: 70px; color: #ffffff">SOUNDENGINIUS</h1>
-</div>
+{{--<div class="text-center" style="height: 200px; background-color:#fd7424; color: #ffffff;" id="index_header">--}}
+    {{----}}
+    {{--<h1 style="padding-top: 70px; color: #ffffff">SOUNDENGINIUS</h1>--}}
+{{--</div>--}}
 
 <div class="container-fluid text-center">
     <div class="pull-right message-alert">

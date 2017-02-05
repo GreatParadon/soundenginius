@@ -1,12 +1,22 @@
+<style>
+
+    #owl-index .item img {
+        margin-top: 0;
+        display: block;
+        width: 100%;
+    }
+
+</style>
+
 <header class="main-header">
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand" href="#" onclick="home()">SOUNDENGINIUS</a>
+                <img src="{{ asset('resource/logo/logo.png') }}" style="height: 50px; margin-top: 0;">
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="/" onclick="home()">หน้าแรก</a></li>
+                    <li><a href="/">หน้าแรก</a></li>
                     <li><a href="/contact" onclick="contact()">ติดต่อเรา</a></li>
                     @if(Session::get('remember_token'))
                         <li class="dropdown">
@@ -14,11 +24,13 @@
                                aria-haspopup="true" aria-expanded="false">{{ Session::get('user_name') }}<span
                                         class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="/cart"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> ตะกร้าสินค้า</a>
+                                <li><a href="/cart"><span class="glyphicon glyphicon-list-alt"
+                                                          aria-hidden="true"></span> ตะกร้าสินค้า</a>
                                 </li>
                                 <li><a href="/checkout"><span class="glyphicon glyphicon-shopping-cart"
                                                               aria-hidden="true"></span> รายการสั่งซื้อสินค้า</a></li>
-                                <li><a href="/user"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> จัดการข้อมูลผู้ใช้</a>
+                                <li><a href="/user"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                                        จัดการข้อมูลผู้ใช้</a>
                                 </li>
                                 <li><a href="/signout" onclick="signout()">ออกจากระบบ</a></li>
                             </ul>
@@ -125,6 +137,33 @@
             </div><!-- /.modal-dialog -->
         </div>
     @endif
-
-
 </header>
+
+
+{{--<div class="row">--}}
+{{--<div class="col-md-12">--}}
+<div id="owl-index" class="owl-carousel owl-theme">
+    <?php
+    $banner = \App\Models\Banner::where('active', 1)->orderBy('seq', 'ASC')->get();
+    ?>
+    @foreach($banner as $r)
+        <div class="item"><img src="{{ filePath('banner',$r->image) }}"></div>
+    @endforeach
+</div>
+{{--</div>--}}
+{{--</div>--}}
+
+<script type="application/javascript">
+    $(document).ready(function () {
+
+        $("#owl-index").owlCarousel({
+            slideSpeed: 200,
+            paginationSpeed: 800,
+            singleItem: true,
+            pagination: false,
+            autoPlay: true
+
+        });
+
+    });
+</script>
