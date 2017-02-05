@@ -31,8 +31,8 @@ h4 {
     font-family: 'Kanit', sans-serif;
 }
 
-.container-fluid {
-    padding: 60px 50px;
+.container-seq {
+    margin-top: 20px;
 }
 
 .bg-grey {

@@ -1,7 +1,6 @@
 <style>
 
     #owl-index .item img {
-        margin-top: 0;
         display: block;
         width: 100%;
     }

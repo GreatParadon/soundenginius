@@ -30,7 +30,7 @@
     {{--<h1 style="padding-top: 70px; color: #ffffff">SOUNDENGINIUS</h1>--}}
 {{--</div>--}}
 
-<div class="container-fluid text-center">
+<div class="container container-seq text-center">
     <div class="pull-right message-alert">
         @include('web.message')
     </div>
