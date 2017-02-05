@@ -12,7 +12,7 @@
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
-                <img src="{{ asset('resource/logo/logo.png') }}" style="height: 50px; margin-top: 0;">
+                <img src="{{ asset('resource/logo/logo.png') }}" style="height: 50px;">
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav navbar-right">
