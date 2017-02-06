@@ -1,3 +1,4 @@
+{{--{{ dd($page['content']) }}--}}
 <table class="table table-hover">
     <thead>
     <tr>
@@ -11,7 +12,8 @@
             </form>
         </td>
         <td>
-            <button onclick="sendFile('{{ url('admin/gallery') }}')" class="btn btn-success pull-right">
+            <button onclick="sendFile('{{ url('admin/'.$page['content'].'/gallery') }}')"
+                    class="btn btn-success pull-right">
                 Submit
             </button>
         </td>
@@ -30,7 +32,7 @@
                 </a>
             </td>
             <td>
-                <a onclick="deletePopUp({{ $g->id }})" style="cursor: pointer"><span
+                <a onclick="deletePopUp('{{ $page['content'] }}','{{ $g->id }}')" style="cursor: pointer"><span
                             class="glyphicon glyphicon-trash"></span></a>
             </td>
         </tr>
@@ -50,11 +52,11 @@
         $('#' + id).remove();
     }
 
-    function deletePopUp(id) {
+    function deletePopUp(content, id) {
         var confirm = window.confirm('Did you want to Delete this image ?');
         if (confirm == true) {
             $.ajax({
-                url: '{{ url('admin/gallery') }}/' + id,
+                url: '{{ url('admin') }}/' + content + '/gallery/' + id,
                 data: {'_token': '{{ csrf_token() }}'},
                 type: 'DELETE',
                 success: function (result) {

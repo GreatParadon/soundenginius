@@ -51,6 +51,8 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
     Route::get('subcategory/sort', 'SubCategoryController@sortPage');
     Route::post('subcategory/sort', 'SubCategoryController@sort');
     Route::resource('subcategory', 'SubCategoryController');
+    Route::post('subcategory/gallery', 'SubCategoryController@galleryUpload');
+    Route::delete('subcategory/gallery/{id}', 'SubCategoryController@galleryDestroy');
 
     Route::get('promotion/sort', 'PromotionController@sortPage');
     Route::post('promotion/sort', 'PromotionController@sort');
@@ -59,9 +61,6 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
     Route::get('banner/sort', 'BannerController@sortPage');
     Route::post('banner/sort', 'BannerController@sort');
     Route::resource('banner', 'BannerController');
-
-    Route::delete('gallery/{id}', 'SubCategoryController@galleryDestroy');
-    Route::post('gallery', 'SubCategoryController@galleryUpload');
 
     Route::resource('checkout', 'CheckoutController');
 
