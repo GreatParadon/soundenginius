@@ -24,7 +24,7 @@
     <style>
 
         #owl-index .item img {
-            margin-top: 50px;
+            margin-top: 70px;
             display: block;
             width: 100%;
         }
