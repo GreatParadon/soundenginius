@@ -1,7 +1,6 @@
 <style>
     footer {
         border-top: 1px solid #E0E0E0;
-
     }
 
     .foot-edit {

@@ -8,6 +8,7 @@ use App\Models\Category;
 
 use App\Http\Requests;
 use App\Models\ProductCart;
+use App\Models\ProductImage;
 use App\Models\Promotion;
 use App\Models\SubCategory;
 use App\Models\WebUser;
@@ -52,7 +53,7 @@ class WebController extends Controller
         if ($product_id) {
             $categories = $this->categoryList();
             $product = SubCategory::where('id', $product_id)->where('active', 1)->first();
-            $gallery = Banner::where('sub_category_id', $product->id)->get();
+            $gallery = ProductImage::where('sub_category_id', $product->id)->get();
             return view('web.product', compact('categories', 'product', 'gallery'));
         } else {
             return $this->index();
