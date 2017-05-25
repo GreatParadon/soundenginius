@@ -4,6 +4,7 @@
     <!-- Theme Made By www.w3schools.com - No Copyright -->
     <title>SOUNDENGINIUS</title>
     <meta charset="utf-8">
+    <meta name="google-site-verification" content="3D5U4Sx42okjiUjHaiXIsoqVOQAYkxTEyFU6PGR7L24" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link href="http://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
@@ -26,9 +27,9 @@
         #owl-index .item img {
             margin-top: 70px;
             display: block;
-            width: 100%;
+            width: 1280px;
+            height: 300px;
         }
-
     </style>
 </head>
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
@@ -45,7 +46,7 @@
         $banner = \App\Models\Banner::where('active', 1)->orderBy('seq', 'ASC')->get();
         ?>
         @foreach($banner as $r)
-            <div class="item"><img src="{{ filePath('banner',$r->image) }}"></div>
+            <div class="item"><img src="{{ filePath('banner',$r->image) }}" class="fixed-image"></div>
         @endforeach
     </div>
     <div class="pull-right message-alert">

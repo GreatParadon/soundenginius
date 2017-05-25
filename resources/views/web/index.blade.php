@@ -1,5 +1,6 @@
 @extends('web_component.main')
 @section('content')
+
     <h3>
         เกี่ยวกับเรา
     </h3>
