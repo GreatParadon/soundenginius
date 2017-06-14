@@ -28,6 +28,7 @@
         @endforeach
     @endif
 </table>
+
 <script type="application/javascript">
     function category(id) {
         window.location.href = "{{ url('category') }}/" + id;

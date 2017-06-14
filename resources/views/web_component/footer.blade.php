@@ -1,6 +1,17 @@
 <style>
+
     footer {
-        border-top: 1px solid #E0E0E0;
+        background-color: #f5f5f5;
+    }
+
+    footer .glyphicon {
+        font-size: 20px;
+        margin-bottom: 20px;
+        color: #2c3e50;
+    }
+
+    footer {
+        padding: 50px;
     }
 
     .foot-edit {
@@ -21,7 +32,7 @@
 
 </style>
 <footer>
-    <div class="row container foot-edit">
+    <div class="row foot-edit">
         <div class="col-md-6 footer1">
             <p><a href="/">หน้าแรก</a> | <a href="/contact">ติดต่อเรา</a>
             <p>

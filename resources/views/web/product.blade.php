@@ -1,24 +1,25 @@
 @extends('web_component.main')
 @section('content')
     <style>
-        #product_img .item img {
-            width: auto;
-            height: 250px;
+        .fit-image {
+            max-height: 100%;
+            max-width: 100%;
         }
     </style>
+
     <h2>{{ $product->title }}</h2>
 
     <div class="row" style="margin-bottom: 20px">
         <div class="col-md-4">
-            <div id="product_img" class="owl-carousel owl-theme">
-                <div class="item">
+            <div id="product_img" class="owl-carousel owl-theme" >
+                <div class="item" style="height: 250px;">
                     <a href="{{ url('content/subcategory').'/'.$product->image }}" data-lightbox="product_img"><img
-                                src="{{ url('content/subcategory').'/'.$product->image }}"></a>
+                                src="{{ url('content/subcategory').'/'.$product->image }}" class="fit-image"></a>
                 </div>
                 @foreach($gallery as $r)
-                    <div class="item">
+                    <div class="item" style="height: 250px;">
                         <a href="{{ url('content/subcategory').'/'.$r->image }}" data-lightbox="product_img"><img
-                                    src="{{ url('content/subcategory').'/'.$r->image }}"></a>
+                                    src="{{ url('content/subcategory').'/'.$r->image }}" class="fit-image"></a>
                     </div>
                 @endforeach
             </div>
@@ -34,13 +35,13 @@
                     <td>{{ $product->cost or '' }}</td>
                     <td>บาท</td>
                 </tr>
-                <tr>
-                    <td colspan="3">
-                        <button class="btn btn-success pull-right"
-                                onclick="storeProductToCart('{{ $product->id or '' }}')">เพิ่มสินค้า
-                        </button>
-                    </td>
-                </tr>
+                {{--<tr>--}}
+                    {{--<td colspan="3">--}}
+                        {{--<button class="btn btn-success pull-right"--}}
+                                {{--onclick="storeProductToCart('{{ $product->id or '' }}')">เพิ่มสินค้า--}}
+                        {{--</button>--}}
+                    {{--</td>--}}
+                {{--</tr>--}}
             </table>
         </div>
     </div>
@@ -78,7 +79,7 @@
                 navigation: true, // Show next and prev buttons
                 slideSpeed: 300,
                 paginationSpeed: 400,
-                singleItem: true,
+                singleItem: true
 
             });
 

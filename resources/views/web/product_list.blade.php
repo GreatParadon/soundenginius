@@ -19,6 +19,15 @@
             min-height: 100%;
         }
 
+        .fit-image {
+            /*background: #FFFFFF;*/
+            /*object-fit: cover;*/
+            max-height: 100%;
+            max-width: 100%;
+            /*height: inherit;*/
+            /*min-height: 100%;*/
+        }
+
     </style>
 
     <h2>{{ $name or '' }}</h2>
@@ -27,14 +36,13 @@
     </h4>
     <hr>
 
-    <div class="row  text-center">
+    <div class="row text-center" style="vertical-align: middle">
         @foreach($products as $product)
-            <div class="col-sm-3" onclick="product('{{ $product->id }}')" style="cursor: pointer">
-                <img src="{{ url('content/subcategory').'/'.$product->image }}" class="fill-image" width="100px"
-                     height="100px">
+            <div class="col-sm-3" onclick="product('{{ $product->id }}')"
+                 style="cursor: pointer; height: 150px; margin-bottom: 100px">
+                <img src="{{ url('content/subcategory').'/'.$product->image }}" class="fit-image">
                 <br>
                 <b>{{ $product->title }}</b>
-
             </div>
         @endforeach
     </div>

@@ -1,33 +1,92 @@
 @extends('web_component.main')
 @section('content')
 
-    <h3>
-        เกี่ยวกับเรา
-    </h3>
-    <h4>
-        ผู้นำเข้า ตัวแทนจำหน่าย จำหน่ายปลีก-ส่ง ขายอุปกรณ์ เครื่องเสียง PA เครื่องเสียงห้องประชุม เครื่องเสียงกลางแจ้ง ราคาเครื่องเสียง pa ร้านเครื่องเสียง Power amp speaker เครื่องเสียงบ้าน ราคาเครื่องเสียงงานคอนเสิร์ต ตู้ลำโพงแขวนผนัง หลายๆ ยี่ห้อ ร้านตู้ลำโพงกลางแจ้ง เครื่องเสียง PA กลางแจ้ง ตู้ลําโพงกลางแจ้ง ห้องประชุม Mixer มิกเซอร์ Power Mixer เพาเวอร์มิกเซอร์ Mixer มิกเซอร์ แบบอนาลอก มิกเซอร์แบบดิจิตอล ขายลำโพง ระบบเสียงตามสาย เครื่องเสียงกลางแจ้งจัดชุด ระบบเสียงประกาศ Portable เครื่องเสียงพกพา เครื่องขยายเสียง ตู้ลำโพงพร้อมเครื่องขยายเสียง โทรโข่ง ไมโครโฟน ไมโครโฟนไร้สาย ไมค์ลอย ลำโพงฮอร์น ศูนย์รวมอุปกรณ์ ระบบเสียงกลางแจ้ง ...
-    </h4>
-    <hr>
+    <style>
 
-    <h3 style="margin-bottom: 50px">โปรโมชั่น</h3>
+        .image_container {
+            height: 200px;
+            margin-bottom: 100px;
+            display: table-cell;
+            vertical-align: middle;
+            cursor: pointer;
+        }
 
-    <div class="row text-center">
-        @foreach($promotions as $promotion)
-            <div class="col-md-3" onclick="promotion('{{ $promotion->id }}')" style="cursor: pointer">
-                <div class="thumbnail">
-                    <img src="{{ url('content/promotion').'/'.$promotion->image }}" style="width: 200px; height: 200px">
-                    <div class="caption">
-                        <h5>{{ $promotion->title }}</h5>
-                        <p>{{ $promotion->desc }}</p>
-                    </div>
-                </div>
+        .fit-image {
+            max-height: 100%;
+            width: 100%;
+            margin: auto auto;
+            display: block;
+            padding: 20px;
+        }
+
+        .image_container:hover {
+            background-color: #eee;
+        }
+
+    </style>
+
+    <section class="bg-light-gray">
+        <div class="row">
+            <div class="col-lg-12 text-left">
+                <h2 class="section-heading">Services</h2>
             </div>
-        @endforeach
-    </div>
+        </div>
+        <div class="row text-center">
+            <div class="col-md-4">
+                    <span class="fa-stack fa-4x">
+                        <i class="fa fa-user fa-stack-1x" aria-hidden="true" style="color: #2c3e50"></i>
+                    </span>
+                <h4 class="service-heading">Sound Audio Consultant</h4>
+                <ul class="text-muted" style="text-align: left">
+                    <li>
+                        ที่ปรึกษาด้านระบบภาพและเสียง
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                    <span class="fa-stack fa-4x">
+                        <i class="fa fa-volume-off fa-stack-1x" aria-hidden="true" style="color: #2c3e50"></i>
+                    </span>
+                <h4 class="service-heading">Sound Production</h4>
+                <ul class="text-muted" style="text-align: left">
+                    <li>
+                        รับติดตั้งออกแบบระบบภาพและเสียงทั้งในและนอกอาคาร
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                    <span class="fa-stack fa-4x">
+                        <i class="fa fa-shopping-cart fa-stack-1x" aria-hidden="true" style="color: #2c3e50"></i>
+                    </span>
+                <h4 class="service-heading">Sell</h4>
+                <ul class="text-muted" style="text-align: left;">
+                    <li>
+                        ขายอุปกรณ์สินค้าระบบภาพและเสียง
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-white">
+        <div class="row">
+            <div class="col-lg-12 text-left">
+                <h2 class="section-heading">หมวดสินค้า</h2>
+            </div>
+        </div>
+
+        <div class="row text-center" style="vertical-align: middle">
+            @foreach($categories as $category)
+                <div class="col-md-3 image_container" onclick="category('{{ $category->id }}')">
+                    <img src="{{ url('content/category').'/'.$category->image }}" class="fit-image">
+                </div>
+            @endforeach
+        </div>
+    </section>
 
     <script type="application/javascript">
-        function promotion(id) {
-            window.location.href = "{{ url('promotion') }}/" + id;
+        function category(id) {
+            window.location.href = "{{ url('category') }}/" + id;
         }
     </script>
 @stop
