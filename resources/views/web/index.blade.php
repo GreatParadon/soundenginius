@@ -4,23 +4,20 @@
     <style>
 
         .image_container {
-            height: 200px;
+            height: 260px;
+            width: 260px;
             margin-bottom: 100px;
-            display: table-cell;
-            vertical-align: middle;
+        }
+
+        .image_container:hover {
             cursor: pointer;
+            background-color: #eee;
         }
 
         .fit-image {
             max-height: 100%;
             width: 100%;
-            margin: auto auto;
-            display: block;
             padding: 20px;
-        }
-
-        .image_container:hover {
-            background-color: #eee;
         }
 
     </style>

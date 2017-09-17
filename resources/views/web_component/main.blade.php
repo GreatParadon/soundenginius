@@ -186,15 +186,45 @@
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
+    <!-- Facebook Pixel Code -->
+    <script>
+        !function (f, b, e, v, n, t, s) {
+            if (f.fbq)return;
+            n = f.fbq = function () {
+                n.callMethod ?
+                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            };
+            if (!f._fbq) f._fbq = n;
+            n.push = n;
+            n.loaded = !0;
+            n.version = '2.0';
+            n.queue = [];
+            t = b.createElement(e);
+            t.async = !0;
+            t.src = v;
+            s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s)
+        }(window, document, 'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '1874454109443616');
+        fbq('track', 'PageView');
+        fbq('track', 'ViewContent', {
+            value: 3.50,
+            currency: 'USD'
+        });
+    </script>
+    <noscript>
+        <img height="1" width="1"
+             src="https://www.facebook.com/tr?id=1874454109443616&ev=PageView&noscript=1"/>
+    </noscript>
+    <!-- End Facebook Pixel Code -->
 </head>
 <body>
 <div class="container">
     <div class="row">
         <div class="col-lg-12">
-            <div class="bg-light-gray">
-                <img src="{{ asset('resource/logo/logo.png') }}" style="height: 100px;" class="img-responsive"
-                     alt="Responsive image">
-            </div>
+            <img src="{{ asset('resource/header.gif') }}" style="width:100%;" class="img-responsive"
+                 alt="Responsive image">
         </div>
     </div>
     <div class="row">
@@ -204,9 +234,8 @@
     </div>
     <div class="row">
         <div class="col-lg-12">
+            {{--            @include('web_component.banner')--}}
             <div id="myCarousel" class="carousel slide" data-ride="carousel">
-
-                <!-- Wrapper for slides -->
                 <div class="carousel-inner">
                     <?php
                     $banner = \App\Models\Banner::where('active', 1)->orderBy('seq', 'ASC')->get();
@@ -215,7 +244,7 @@
                     @foreach($banner as $r)
                         <div class="item @if($count == 0) active @endif">
                             <img src="{{ filePath('banner',$r->image) }}" class="fixed-image img-responsive"
-                                 alt="Responsive image">
+                                 style="width:100%;">
                         </div>
                         <?php $count++ ?>
                     @endforeach
